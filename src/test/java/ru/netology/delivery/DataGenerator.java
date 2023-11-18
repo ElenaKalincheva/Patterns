@@ -1,5 +1,6 @@
 package ru.netology.delivery;
 
+
 import com.github.javafaker.Faker;
 import lombok.Value;
 
@@ -17,8 +18,18 @@ public class DataGenerator {
     }
 
     public static String generateCity() {
-        var cities = new String[]{
-                "Москва", "Астрахань", "Архангельск", "Омск", "Тула", "Калуга", "Брянск"};
+        var cities = new String[]{"Майкоп", "Горно-Алтайск", "Уфа", "Улан-Удэ", "Махачкала", "Магас", "Нальчик",
+                "Элиста", "Черкесск", "Петрозаводск", "Сыктывкар", "Симферополь", "Йошкар-Ола", "Саранск",
+                "Якутск", "Владикавказ", "Казань", "Кызыл", "Ижевск", "Абакан", "Грозный", "Чебоксары",
+                "Барнаул", "Чита", "Петропавловск-Камчатский", "Краснодар", "Красноярск", "Пермь",
+                "Владивосток", "Ставрополь", "Хабаровск", "Благовещенск", "Архангельск", "Астрахань",
+                "Белгород", "Брянск", "Владимир", "Волгоград", "Вологда", "Воронеж", "Иваново", "Орёл",
+                "Иркутск", "Калининград", "Калуга", "Кемерово", "Киров", "Кострома", "Курган", "Курск",
+                "Санкт-Петербург", "Липецк", "Магадан", "Москва", "Мурманск", "Нижний Новгород",
+                "Великий Новгород", "Новосибирск", "Омск", "Оренбург", "Пенза", "Псков", "Салехард",
+                "Ростов-на-Дону", "Рязань", "Самара", "Саратов", "Южно-Сахалинск", "Екатеринбург",
+                "Смоленск", "Тамбов", "Тверь", "Томск", "Тула", "Тюмень", "Ульяновск", "Челябинск",
+                "Ярославль", "Севастополь", "Биробиджан", "Нарьян-Мар", "Ханты-Мансийск", "Анадырь"};
         return cities[new Random().nextInt(cities.length)];
     }
 
@@ -31,14 +42,20 @@ public class DataGenerator {
         var faker = new Faker(new Locale(locale));
         return faker.phoneNumber().phoneNumber();
     }
+    public static String generateWrongPhone(String locale) {
+        var faker = new Faker(new Locale(locale));
+        return faker.numerify("#####");
+    }
 
     public static class Registration {
         private Registration() {
         }
+
         public static UserInfo generateUser(String locale) {
             return new UserInfo(generateCity(), generateName(locale), generatePhone(locale));
         }
     }
+
     @Value
     public static class UserInfo {
         String city;
